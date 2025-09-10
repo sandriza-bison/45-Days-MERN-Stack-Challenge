@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Title with tooltip -->
+  <div class="tooltip" tabindex="0" aria-describedby="grade-bands">
+    <h2>🎀 Grade Calculator 🎀</h2>
+    <span class="tooltiptext" role="tooltip" id="grade-bands">
+      Grade bands: A (90–100) · B (80–89) · C (70–79) · D (60–69) · F (&lt;60)
+    </span>
+  </div>
+
+  <div class="container">
+    <!-- Input: Marks to Grade -->
+    <input type="number" id="marks" placeholder="Enter your marks (0–100)">
+    <button id="calcMarksBtn">Calculate Grade</button>
+
+    <!-- Input: Grade to Range -->
+    <input type="text" id="gradeInput" placeholder="Enter a grade (A–F)">
+    <button id="gradeToRangeBtn">Show Range</button>
+
+    <!-- Reset Button -->
+    <button id="resetBtn" class="reset">Reset</button>
+
+    <!-- Result Area -->
+    <div class="result" id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
