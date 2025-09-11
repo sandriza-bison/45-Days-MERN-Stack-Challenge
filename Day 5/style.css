@@ -1,0 +1,160 @@
+:root{
+  --bg-light-1:#ffdde1; --bg-light-2:#ee9ca7;
+  --card-bg:#fff; --text-dark:#2c3e50; --muted-dark:#5c1a33;
+  --accent:#ff2da6; --accent-2:#ff67c9;
+  --glass:rgba(255,45,166,0.06); --border:rgba(255,45,166,0.12);
+  --shadow:0 8px 20px rgba(255,45,166,0.18);
+}
+
+/* Page + Card */
+*{box-sizing:border-box}
+body{
+  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  margin:0; height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,var(--bg-light-1),var(--bg-light-2));
+  color:var(--text-dark); -webkit-font-smoothing:antialiased;
+}
+#main{
+  position:relative; width:350px; padding:24px 20px 28px;
+  border-radius:15px; background:var(--card-bg); text-align:center;
+  box-shadow:var(--shadow); transition:transform .28s,box-shadow .28s,background .28s;
+}
+#main:hover{ transform:scale(1.02) }
+
+/* Avatar & header */
+.hero{ display:flex; gap:16px; align-items:center; justify-content:center; margin-bottom:14px; flex-wrap:wrap }
+.avatar-wrap{ width:100px; height:100px; flex:0 0 100px; position:relative }
+.avatar, .avatar-fallback{
+  width:100px; height:100px; border-radius:50%; display:block; object-fit:cover;
+  border:4px solid var(--accent);
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:0 10px 30px rgba(255,45,166,0.12);
+}
+.avatar-fallback{ display:none; align-items:center; justify-content:center; font-weight:800; font-size:28px; color:#fff }
+
+/* Titles - moved down slightly for breathing room */
+.title {
+  padding-top:6px;              /* <-- added breathing room */
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.title h1{ margin:0; font-size:1.6rem; color:#d81b60 }
+.title h2{ margin:4px 0 0 0; font-size:1rem; font-weight:500; color:#ad1457 }
+
+/* Bio + Links */
+#box{ background:#fff0f6; padding:12px; border-radius:10px; color:var(--muted-dark); margin:10px 0 18px; border:1px solid var(--border); line-height:1.45 }
+ul{ list-style:none; padding:0; margin:0; display:flex; justify-content:center }
+ul li{ margin:0 6px }
+ul li a{
+  display:inline-block; text-decoration:none; font-weight:700;
+  color:#c2185b; background:#fde4ef; padding:8px 14px; border-radius:8px;
+  transition:transform .12s, box-shadow .12s;
+}
+
+/* Hover */
+ul li a:hover{ background:#c2185b; color:#fff; transform:translateY(-2px) }
+
+/* Toggle */
+#theme-toggle{
+  position:absolute; top:14px; right:14px; padding:8px 12px; border:0; border-radius:10px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; font-weight:700;
+  cursor:pointer; box-shadow:0 6px 18px rgba(255,45,166,0.18); transition:transform .12s,box-shadow .12s,background .2s;
+}
+#theme-toggle:focus{ outline:3px solid rgba(255,45,166,0.18); outline-offset:3px }
+
+/* =========================
+   Dark / Neon theme (compact)
+   ========================= */
+body.dark-theme{
+  background:linear-gradient(135deg,#0b0610,#2c003e); color:#ffdff3;
+}
+
+/* Card: softer outer glow only (no text-shadow bleed) */
+body.dark-theme #main{
+  background:linear-gradient(180deg,rgba(255,45,166,0.04),rgba(255,45,166,0.02));
+  border-radius:15px;
+  border:1px solid rgba(255,45,166,0.18);
+  box-shadow:none;
+  animation:cardGlow 6s infinite ease-in-out;
+}
+
+/* Dark-mode styles for elements */
+body.dark-theme .title h1{ color:#ff69d6 }
+body.dark-theme .title h2{ color:#ff9edc }
+body.dark-theme #box{ background:rgba(42,15,38,0.5); color:#ffdff3; border:1px solid rgba(255,45,166,0.12); box-shadow:inset 0 6px 24px rgba(255,45,166,0.06) }
+
+/* Short shared animation definitions (color-shifting neon) */
+@keyframes neonPulse{
+  0%{
+    box-shadow:
+      0 0 8px rgba(255,45,166,0.35),
+      0 0 18px rgba(255,0,255,0.22),
+      0 0 34px rgba(186,85,211,0.14);
+    text-shadow:0 2px 6px rgba(255,45,166,0.18);
+  }
+  50%{
+    box-shadow:
+      0 0 20px rgba(255,20,147,0.6),
+      0 0 36px rgba(255,0,255,0.38),
+      0 0 66px rgba(138,43,226,0.26);
+    text-shadow:0 4px 14px rgba(255,20,147,0.28);
+  }
+  100%{
+    box-shadow:
+      0 0 8px rgba(255,45,166,0.35),
+      0 0 18px rgba(255,0,255,0.22),
+      0 0 34px rgba(186,85,211,0.14);
+    text-shadow:0 2px 6px rgba(255,45,166,0.18);
+  }
+}
+
+/* Apply animations: avatar (continuous), titles (subtle), controls hover (on hover) */
+body.dark-theme .avatar,
+body.dark-theme .avatar-fallback{
+  border-color:rgba(255,45,166,0.9); filter:saturate(110%);
+  animation:neonPulse 3s infinite ease-in-out;
+}
+
+/* Hover-only pulse for interactive controls (faster) */
+body.dark-theme ul li a:hover,
+body.dark-theme #theme-toggle:hover{
+  animation:neonPulse 2s infinite ease-in-out;
+  transform:translateY(-3px);
+}
+
+/* Slight animated glow on titles (subtle and shorter reach) */
+body.dark-theme .title h1,
+body.dark-theme .title h2{
+  animation:neonPulse 5s infinite ease-in-out;
+  text-shadow:0 2px 8px rgba(255,45,166,0.12);
+}
+
+/* Card outer glow (soft, outer-only — prevents overlap with name) */
+@keyframes cardGlow {
+  0% { box-shadow: 0 0 10px rgba(255,45,166,0.10), 0 0 20px rgba(255,0,255,0.06); }
+  50%{ box-shadow: 0 0 24px rgba(255,20,147,0.20), 0 0 44px rgba(186,85,211,0.12); }
+  100%{ box-shadow: 0 0 10px rgba(255,45,166,0.10), 0 0 20px rgba(255,0,255,0.06); }
+}
+
+/* Dark-mode variants for interactive elements */
+body.dark-theme ul li a{
+  background:rgba(42,15,38,0.45); color:#ff69d6; border:1px solid rgba(255,45,166,0.08);
+  box-shadow:0 6px 30px rgba(255,45,166,0.06);
+}
+body.dark-theme ul li a:hover{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; box-shadow:0 10px 40px rgba(255,45,166,0.22) }
+
+/* Toggle appearance in dark */
+body.dark-theme #theme-toggle{
+  background:transparent; color:var(--accent); border:1px solid rgba(255,45,166,0.12);
+  box-shadow:0 6px 24px rgba(255,45,166,0.12), 0 0 18px rgba(255,45,166,0.14), 0 0 36px rgba(255,45,166,0.08);
+}
+
+/* Responsive */
+@media (max-width:460px){
+  #main{ width:92vw; padding:18px }
+  .avatar, .avatar-fallback{ width:82px; height:82px }
+  .title h1{ font-size:1.25rem }
+}

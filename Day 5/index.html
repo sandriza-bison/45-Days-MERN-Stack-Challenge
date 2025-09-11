@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sandriza Bison — Business Card</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="main" class="card">
+    <button id="theme-toggle" class="toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+
+    <header class="hero">
+      <div class="avatar-wrap">
+        <img src="SB.jpeg" alt="Sandriza Bison" class="avatar" id="avatar"
+             onerror="this.style.display='none'; document.querySelector('.avatar-fallback').style.display='flex'">
+        <div class="avatar-fallback" aria-hidden="true">SB</div>
+      </div>
+
+      <div class="title">
+        <h1>Sandriza Bison</h1>
+        <h2>CSE Student</h2>
+      </div>
+    </header>
+
+    <section id="box" class="bio">
+      <p>I am a 3rd-year Computer Science student, passionate about exploring new programming languages and technologies. I have a strong foundation in HTML, CSS, JavaScript, and many more, with a keen interest in building innovative solutions and enhancing my coding expertise.</p>
+    </section>
+
+    <nav class="links" aria-label="social links">
+      <ul>
+        <li><a href="https://www.linkedin.com/in/sandriza-bison-48488330a" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
